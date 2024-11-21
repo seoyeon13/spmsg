@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>스팸</title>
+	 <style>
+    body {
+      margin: 0;
+      height: 100vh;font-size: 1.3vw;
+      overflow: hidden;
+      background: url('img/1-1.png') no-repeat center center; /* 초기 배경 */
+      background-size: auto 100vh;
+      transition: background 0.3s ease; /* 배경 전환 효과 */
+    }
+
+    .msg{position: absolute;left: 50%;top: 20vw;
+      transform: translateX(-50%);
+      box-shadow: 0.1vw 0.1vw 0.3vw lightgray;
+    	padding: 2vw; width:auto; height:auto;cursor: pointer;
+    	color: black; border-radius: 1.5vw; background-color: #E8E8E8;
+    	animation: msg-mv 0.5s alternate infinite;}
+    	@keyframes msg-mv{to {top: 18.5vw;}}
+	.msg:after {content: "";
+	  position: absolute;left: -2vw;top: 70%;
+	  transform: translateY(-50%);
+	  border-right: 2.1vw solid #E8E8E8;
+	  border-top: 1vw solid transparent;
+	  border-bottom: 1vw solid transparent;}
+	.bg-fst{position: absolute;z-index: -10;
+		background: white;width: 100vw;height: 100vh;}
+
+  #spam{position: absolute;left: 0vw;top: 0vw;
+    box-shadow: 0.1vw 0.1vw 0.3vw skyblue;
+      padding: 2vw; width:auto; height:auto;
+      color: black; border-radius: 1.5vw; background-color: #E8E8E8;}
+  #spam:after {content: "";
+    position: absolute;left: -2vw;top: 70%;
+    border-right: 2.1vw solid #E8E8E8;
+    border-top: 1vw solid transparent;
+    border-bottom: 1vw solid transparent;}
+      #true:after {content: "";
+    position: absolute;left: -2vw;top: 70%;
+    border-right: 2.1vw solid #E8E8E8;
+    border-top: 1vw solid transparent;
+    border-bottom: 1vw solid transparent;}
+
+    #ans{display: none;background: white;padding: 1vw;border-radius: 1vw;
+      position: absolute;left: 50%;bottom: 10vw;
+      transform: translateX(-50%);z-index: 20;}
+  </style>
+</head>
+<body>
+  <div id="ans">인증번호를 입력하세요<br><input type="number"></div>
+	<div id="fst">
+  	<div class="msg">[Web발신]<br>스팸문スr 전체 삭제<br>문의 08012341234</div>
+  	<div class="bg-fst"></div>
+	</div>
+<script>
+  fst.onclick = function () {
+    fst.style.display = "none";
+    ans.style.display = "block";
+
+    // 2초 간격으로 #spam 생성
+    const spamInterval = setInterval(() => {
+      // 랜덤 위치 계산
+      const randomX = Math.random() * (window.innerWidth - 100); // 화면 너비 범위 내
+      const randomY = Math.random() * (window.innerHeight - 50); // 화면 높이 범위 내
+
+      // #spam 요소 생성 및 스타일 적용
+      const spamElement = document.createElement('div');
+      spamElement.id = 'spam';
+      spamElement.innerHTML = `[Web발신]<br>[국 민 건 강 보 험]<br>검 진(진 단 서)<br>조 회 하 기 <a href="spam1.html">Vo.la/8hFDd3**</a>`;
+      spamElement.style.position = 'absolute';
+      spamElement.style.left = `${randomX}px`;
+      spamElement.style.top = `${randomY}px`;
+      spamElement.style.boxShadow = '0.1vw 0.1vw 0.5vw skyblue';
+      spamElement.style.padding = '2vw';
+      spamElement.style.color = 'black';
+      spamElement.style.borderRadius = '1.5vw';
+      spamElement.style.backgroundColor = '#E8E8E8';
+
+      // #spam 요소를 body에 추가
+      document.body.appendChild(spamElement);
+
+      // 7초 후 #spam 제거
+      setTimeout(() => {
+        spamElement.remove();
+      }, 7000);
+    }, 200);
+
+    const trueInterval = setInterval(() => {
+      // 랜덤 위치 계산
+      const randomX = Math.random() * (window.innerWidth - 100); // 화면 너비 범위 내
+      const randomY = Math.random() * (window.innerHeight - 50); // 화면 높이 범위 내
+
+      const trueElement = document.createElement('div');
+      trueElement.id = 'true';
+      trueElement.innerHTML = `[NICE ID]인증번호 [391664]를<br>입력해주세요. 사칭/전화사기에<br>주의하세요.`;
+      trueElement.style.position = 'absolute';
+      trueElement.style.left = `${randomX}px`;
+      trueElement.style.top = `${randomY}px`;
+      trueElement.style.boxShadow = '0.1vw 0.1vw 0.5vw skyblue';
+      trueElement.style.padding = '2vw';
+      trueElement.style.color = 'black';
+      trueElement.style.borderRadius = '1.5vw';
+      trueElement.style.backgroundColor = '#E8E8E8';
+
+      document.body.appendChild(trueElement);
+
+      setTimeout(() => {
+        trueElement.remove();
+      }, 7000);
+    }, 2000);
+  };
+
+  // 이미지 배열 정의 (4x4)
+  const images = [
+    ['img/1-1.png', 'img/1-2.png', 'img/1-3.png', 'img/1-4.png'],
+    ['img/2-1.png', 'img/2-2.png', 'img/2-3.png', 'img/2-4.png'],
+    ['img/3-1.png', 'img/3-2.png', 'img/3-3.png', 'img/3-4.png'],
+    ['img/4-1.png', 'img/4-2.png', 'img/4-3.png', 'img/4-4.png']
+  ];
+
+  // 화면 크기 가져오기
+  const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
+
+  // 마우스 움직임 이벤트 리스너 추가
+  document.addEventListener('mousemove', (event) => {
+    const mouseX = event.clientX; // 마우스 X 좌표
+    const mouseY = event.clientY; // 마우스 Y 좌표
+
+    // 몇 번째 칸에 있는지 계산
+    let column = Math.floor((mouseX / screenWidth) * 4); // 가로 칸 계산 (0~3)
+    let row = Math.floor((mouseY / screenHeight) * 4); // 세로 칸 계산 (0~3)
+
+    // 칸 범위를 초과한 경우 보정
+    column = Math.min(Math.max(column, 0), 3); // column이 0 미만이면 0, 3 초과면 3으로 제한
+    row = Math.min(Math.max(row, 0), 3); // row가 0 미만이면 0, 3 초과면 3으로 제한
+
+    // 안전하게 배열에서 이미지 가져오기
+    const newBackground = images[row][column];
+
+    // 배경 이미지 변경
+    document.body.style.backgroundImage = `url('${newBackground}')`;
+  });
+</script>
+</body>
+</html>
